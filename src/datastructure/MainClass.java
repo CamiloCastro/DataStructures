@@ -22,9 +22,10 @@ public class MainClass {
         list.add(9);
         list.add(-3);
         list.add(5);
-        System.out.println("Size: " + list.size());
-        list.remove(2);
-        System.out.println("Size: " + list.size());
+        System.out.println("Size: " + list.size());        
+        list.print();
+        list.sort();
+        System.out.println("Sorted Array");
         list.print();
         
     }

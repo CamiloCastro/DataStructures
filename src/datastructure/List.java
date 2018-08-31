@@ -18,7 +18,7 @@ public interface List<T> {
     T get(int index);
     
     //Add a new element in the list
-    void add(T element);
+    boolean add(T element);
     
     //Add a new element in the index position. Other elements must be moved
     void add(int index, T element);
@@ -30,7 +30,7 @@ public interface List<T> {
     boolean isEmpty();
     
     //Delete an element in the index position. Other elements must be moved
-    void remove(int index);
+    T remove(int index);
     
     //Clear the list
     void clear();

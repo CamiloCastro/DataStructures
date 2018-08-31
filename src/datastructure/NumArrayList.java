@@ -111,6 +111,20 @@ public class NumArrayList {
         size = 0;
     }
     
+    public void sort()
+    {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = i; j < size; j++) {
+                if(elementData[i] > elementData[j])
+                {
+                    Integer aux = elementData[i];
+                    elementData[i] = elementData[j];
+                    elementData[j] = aux;
+                }                
+            }            
+        }
+    }
+    
     
 
 
