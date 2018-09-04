@@ -8,6 +8,7 @@ package datastructure;
 import datastructure.objects.MyClock;
 import datastructure.list.IntegerArrayList;
 import datastructure.list.MyArrayList;
+import datastructure.list.MyLinkedList;
 import java.util.Iterator;
 
 /**
@@ -44,15 +45,27 @@ public class MainClass {
         
         //Generic Array List
         MyArrayList<MyClock> clockList = new MyArrayList<>();        
-//        clockList.add(new MyClock(5,35,24));
-//        clockList.add(new MyClock(12,2,32));
-//        clockList.add(new MyClock(1,12,24));
-//        clockList.add(new MyClock(5,35,24));
-//        System.out.println("Original Clock Array List");
-//        clockList.print();
-//        clockList.sort();
-//        System.out.println("Sorted Clock Array List");
-//        clockList.print();
+        clockList.add(new MyClock(5,35,24));
+        clockList.add(new MyClock(12,2,32));
+        clockList.add(new MyClock(1,12,24));
+        clockList.add(new MyClock(5,35,24));
+        System.out.println("Original Clock Array List");
+        clockList.print();
+        clockList.sort();
+        System.out.println("Sorted Clock Array List");
+        clockList.print();
+        
+        //Generic Simple LinkedList
+        MyLinkedList<MyClock> clockList2 = new MyLinkedList<>();        
+        clockList2.add(new MyClock(5,35,24));
+        clockList2.add(new MyClock(12,2,32));
+        clockList2.add(new MyClock(1,12,24));
+        clockList2.add(new MyClock(5,35,24));
+        System.out.println("Original Clock Simple Linked List");
+        clockList2.print();
+        clockList2.sort();
+        System.out.println("Sorted Clock Simple Linked List");
+        clockList2.print();
         
         
     }

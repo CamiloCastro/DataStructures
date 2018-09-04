@@ -42,7 +42,7 @@ public class MyArrayList<T extends Comparable> extends AbstractList<T> {
 
     @Override
     public T get(int index) {
-        if (index > 0 && index < size)
+        if (index >= 0 && index < size)
             return elementData[index];        
         throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
     }
@@ -70,11 +70,12 @@ public class MyArrayList<T extends Comparable> extends AbstractList<T> {
 
     @Override
     public void set(int index, T element) {
-        if (index > 0 && index < size)
+        if (index >= 0 && index < size)
         {
             elementData[index] = element;
         }
-        throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
+        else
+            throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
     }
 
     @Override
@@ -95,29 +96,8 @@ public class MyArrayList<T extends Comparable> extends AbstractList<T> {
         for (int i = 0; i < size; i++)
             elementData[i] = null;
         size = 0;
-    }
-
-    @Override
-    public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(elementData[i].toString());            
-        }        
-    }
-
-    @Override
-    public void sort() {
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = i + 1; j < size; j++) {
-                if(elementData[i].compareTo(elementData[j]) == 1)
-                {
-                    T aux = elementData[i];
-                    elementData[i] = elementData[j];
-                    elementData[j] = aux;
-                }                
-            }            
-        }
-    }
-    
+    }    
+   
     public Iterator<T> iterator()
     {
         return new MyArrayListListener();

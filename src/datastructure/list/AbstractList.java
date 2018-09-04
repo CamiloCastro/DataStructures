@@ -43,9 +43,26 @@ public abstract class AbstractList<T extends Comparable> implements List<T> {
     public abstract void clear();
 
     @Override
-    public abstract void print();
+    public void print()
+    {
+        for (int i = 0; i < size; i++) {
+            System.out.println(get(i).toString());            
+        }
+    }
 
     @Override
-    public abstract void sort();
+    public void sort()
+    {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = i + 1; j < size; j++) {
+                if(get(i).compareTo(get(j)) == 1)
+                {
+                    T aux = get(i);
+                    set(i,get(j));
+                    set(j, aux);                    
+                }                
+            }            
+        }
+    }
     
 }

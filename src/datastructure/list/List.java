@@ -10,7 +10,7 @@ package datastructure.list;
  * @author jccas
  * @param <T>
  */
-public interface List<T extends Comparable> {
+public interface List<T> {
     
     //Return size of list
     int size();
