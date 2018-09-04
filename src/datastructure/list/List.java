@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructure;
+package datastructure.list;
 
 /**
  *
  * @author jccas
+ * @param <T>
  */
-public interface List<T> {
+public interface List<T extends Comparable> {
     
     //Return size of list
     int size();

@@ -5,6 +5,11 @@
  */
 package datastructure;
 
+import datastructure.objects.MyClock;
+import datastructure.list.IntegerArrayList;
+import datastructure.list.MyArrayList;
+import java.util.Iterator;
+
 /**
  *
  * @author jccas
@@ -16,17 +21,39 @@ public class MainClass {
      */
     public static void main(String[] args) {
         
-        NumArrayList list = new NumArrayList();
-        
-        list.add(15);
-        list.add(9);
-        list.add(-3);
-        list.add(5);
-        System.out.println("Size: " + list.size());        
-        list.print();
-        list.sort();
+        //Integer ArrayList        
+        IntegerArrayList integerList = new IntegerArrayList();        
+        integerList.add(15);
+        integerList.add(9);
+        integerList.add(-3);
+        integerList.add(5);
+        System.out.println("Size: " + integerList.size());        
+        integerList.print();
+        integerList.sort();
         System.out.println("Sorted Array");
-        list.print();
+        integerList.print();
+        
+        Iterator<Integer> it = integerList.iterator();
+        Integer sum = 0;
+        while(it.hasNext())
+        {
+            sum += it.next();
+        }
+        System.out.println("Suma: " + sum);
+        
+        
+        //Generic Array List
+        MyArrayList<MyClock> clockList = new MyArrayList<>();        
+//        clockList.add(new MyClock(5,35,24));
+//        clockList.add(new MyClock(12,2,32));
+//        clockList.add(new MyClock(1,12,24));
+//        clockList.add(new MyClock(5,35,24));
+//        System.out.println("Original Clock Array List");
+//        clockList.print();
+//        clockList.sort();
+//        System.out.println("Sorted Clock Array List");
+//        clockList.print();
+        
         
     }
     

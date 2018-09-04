@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructure;
+package datastructure.list;
 
 /**
  *
  * @author jccas
+ * @param <T>
  */
-public abstract class AbstractList<T> implements List<T> {
+public abstract class AbstractList<T extends Comparable> implements List<T> {
 
     protected int size;
     

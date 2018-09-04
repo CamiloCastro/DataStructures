@@ -1,11 +1,13 @@
-package datastructure;
+package datastructure.list;
 
-public class NumArrayList {
+import java.util.Iterator;
+
+public class IntegerArrayList {
 
     private int size;
     private Integer[] elementData;
 
-    public NumArrayList(int initialCapacity) {
+    public IntegerArrayList(int initialCapacity) {
         if (initialCapacity > 0) {
             this.elementData = new Integer[initialCapacity];
         } else
@@ -15,7 +17,7 @@ public class NumArrayList {
         this.size = 0;
     }
 
-    public NumArrayList() {
+    public IntegerArrayList() {
         this.elementData = new Integer[0];
         this.size = 0;
     }
@@ -38,10 +40,11 @@ public class NumArrayList {
         }
     }
 
-    public void add(Integer val)
+    public boolean add(Integer val)
     {
         ensureCapacity(size + 1);
         elementData[size++] = val;
+        return true;
     }
     
     public void add(int index, Integer val)
@@ -114,7 +117,7 @@ public class NumArrayList {
     public void sort()
     {
         for (int i = 0; i < size - 1; i++) {
-            for (int j = i; j < size; j++) {
+            for (int j = i + 1; j < size; j++) {
                 if(elementData[i] > elementData[j])
                 {
                     Integer aux = elementData[i];
@@ -125,6 +128,40 @@ public class NumArrayList {
         }
     }
     
+    public Iterator<Integer> iterator()
+    {
+        return new NumArrayListListener();
+    }
+    
+    private class NumArrayListListener implements Iterator<Integer>
+    {
+        
+        private int current = 0;
+
+        @Override
+        public boolean hasNext() {
+            return current < size();
+        }
+
+        @Override
+        public Integer next() {
+            if (hasNext())
+                return elementData[current++];
+            
+            return null;
+        }
+
+        @Override
+        public void remove() {
+            IntegerArrayList.this.remove(--current);
+        }
+        
+        public void reset()
+        {
+            current = 0;
+        }
+        
+    }
     
 
 
