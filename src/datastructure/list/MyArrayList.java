@@ -59,13 +59,14 @@ public class MyArrayList<T extends Comparable> extends AbstractList<T> {
         if(index >= 0 && index <= size)
         {
             ensureCapacity(size + 1);
-            for (int i = index; i < elementData.length - 1; i++) {
-                elementData[i + 1] = elementData[i];                
+            for (int i = size; i > index; i--) {
+                elementData[i] = elementData[i - 1];                
             }
             elementData[index] = element;
             size++;
         }
-        throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
+        else
+            throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
     }
 
     @Override
@@ -80,14 +81,16 @@ public class MyArrayList<T extends Comparable> extends AbstractList<T> {
 
     @Override
     public T remove(int index) {
-        if (index > 0 && index < size)
+        if (index >= 0 && index < size)
         {
+            T removeElement = elementData[index];
             for (int i = index; i < elementData.length - 1; i++) {
                 elementData[i] = elementData[i + 1];                
             }
             elementData[size - 1] = null;
             size--;
-        }
+            return removeElement;
+        }        
         throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
     }
 

@@ -14,10 +14,12 @@ public class Node<T> {
     
     T element;
     Node<T> next;
+    Node<T> before;
 
-    public Node(T element, Node<T> nextElement) {
+    public Node(T element, Node<T> nextElement, Node<T> before) {
         this.element = element;
         this.next = nextElement;
+        this.before = before;
     }
 
     public T getElement() {
@@ -34,6 +36,14 @@ public class Node<T> {
 
     public void setNext(Node<T> next) {
         this.next = next;
+    }
+    
+    public Node<T> getBefore() {
+        return before;
+    }
+
+    public void setBefore(Node<T> before) {
+        this.before = before;
     }
     
 }

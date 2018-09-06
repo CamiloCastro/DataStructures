@@ -49,7 +49,7 @@ public class MyLinkedList<T extends Comparable> extends AbstractList<T> {
         else
             newNextNode= getNode(index);
         
-        Node<T> newNode = new Node<>(element, newNextNode);
+        Node<T> newNode = new Node<>(element, newNextNode, null);
         
         if(index > 0)
         {
