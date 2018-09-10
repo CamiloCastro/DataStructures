@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructure;
-
-import datastructure.stack.MyArrayStack;
+package datastructure.stack;
 
 /**
  *

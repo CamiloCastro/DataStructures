@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructure;
+package datastructure.list;
 
-import datastructure.objects.MyClock;
 import datastructure.list.IntegerArrayList;
 import datastructure.list.MyArrayList;
 import datastructure.list.MyDoubleLinkedList;
