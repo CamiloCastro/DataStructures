@@ -188,5 +188,6 @@ public class MyPriorityArrayQueue<T> implements PriorityQueue<T> {
         front = 0;
         back = -1;
         size = 0;
+        priorityDequeues = 0;
     }    
 }
