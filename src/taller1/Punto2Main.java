@@ -29,9 +29,11 @@ public class Punto2Main {
         //End Time
         
         int[] mergeArray = generateRandomArray(n, -n, n);
+        System.out.println(Arrays.toString(mergeArray));
         //Start Time
         mergeSort(mergeArray);
         //End Time
+        System.out.println(Arrays.toString(mergeArray));
         
     }
     
@@ -76,7 +78,71 @@ public class Punto2Main {
     
     private static void mergeSort(int [] array)
     {
-        //Your code here
+        sort(array, 0, array.length-1);
+    }
+    
+    private static void sort(int[] array, int l, int r)
+    {
+        if(l<r)
+        {
+            int m = (l+r)/2;            
+            sort(array, l, m);
+            sort(array, m+1, r);            
+            merge(array, l, m, r);
+        }
+    }
+    
+    private static void merge(int[] array, int l, int m, int r)
+    {
+        int nl = m - l + 1;
+        int nr = r - m;
+        
+        int leftArray[] = new int[nl];
+        int rightArray[] = new int[nr];
+        
+        for (int i = 0; i < nl; i++) {            
+            leftArray[i] = array[l + i];
+        }
+        
+        for (int i = 0; i < nr; i++) {
+            rightArray[i] = array[m + 1 + i];
+        }
+        
+        int i = 0, j = 0, k = l;
+        
+        while(i < nl && j < nr)
+        {
+            if(leftArray[i] <= rightArray[j])
+            {
+                array[k] = leftArray[i];
+                i++;
+            }
+            else
+            {
+                array[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
+        
+        while (i < nl)
+        {
+            array[k] = leftArray[i];
+            i++;
+            k++;
+        }
+        
+        while (j < nr)
+        {
+            array[k] = rightArray[j];
+            j++;
+            k++;
+        }
+        
+        
+        
+        
+                
     }
     
 }
