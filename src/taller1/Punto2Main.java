@@ -5,6 +5,9 @@
  */
 package taller1;
 
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  *
  * @author jccas
@@ -20,7 +23,7 @@ public class Punto2Main {
         int index = linealSearch(searchArray, N);
         //End Time
         
-        int[] bubbleArray = generateRandomArray(n, -n, n);
+        int[] bubbleArray = generateRandomArray(n, -n, n);        
         //Start Time
         bubbleSort(bubbleArray);
         //End Time
@@ -34,25 +37,41 @@ public class Punto2Main {
     
     private static int[] generateRandomArray(int n, int min, int max)
     {
-        //Your code here
-        return new int[0];
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = generateRandomInt(min, max);            
+        }
+        return arr;
     }
     
     private static int generateRandomInt(int min, int max)
     {
-        //Your code here
-        return 0;
+        Random rnd = new Random();
+        return rnd.nextInt(max - min + 1) + min;
     }
     
     private static int linealSearch(int[] array, int N)
     {
-        //Your code here
-        return 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == N)            
+                return i;
+        }
+        return -1;
     }
     
     private static void bubbleSort(int[] array)
     {
-        //Your code here
+        int n = array.length;        
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {                
+                if(array[j] < array[i])
+                {
+                    int aux = array[i];
+                    array[i] = array[j];
+                    array[j] = aux;                
+                }
+            }
+        }
     }
     
     private static void mergeSort(int [] array)
