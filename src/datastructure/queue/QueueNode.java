@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructure.stack;
+package datastructure.queue;
 
 /**
  *
  * @author juan.castro
  */
-public class StackNode<T> {
+public class QueueNode<T> {
     
     T element;
-    StackNode<T> nextNode;
+    QueueNode<T> nextNode;
 
-    public StackNode(T element, StackNode<T> nextNode) {
+    public QueueNode(T element, QueueNode<T> nextNode) {
         this.element = element;
         this.nextNode = nextNode;
     }
@@ -27,11 +27,11 @@ public class StackNode<T> {
         this.element = element;
     }
 
-    public StackNode<T> getNextNode() {
+    public QueueNode<T> getNextNode() {
         return nextNode;
     }
 
-    public void setNextNode(StackNode<T> nextNode) {
+    public void setNextNode(QueueNode<T> nextNode) {
         this.nextNode = nextNode;
     }
     

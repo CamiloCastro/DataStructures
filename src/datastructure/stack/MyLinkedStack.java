@@ -11,39 +11,63 @@ package datastructure.stack;
  */
 public class MyLinkedStack<T> implements Stack<T> {
 
+    StackNode<T> top;
+    int size;
+    
+    public MyLinkedStack()
+    {
+        top = null;
+        size = 0;
+    }
+    
     @Override
     public void push(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StackNode<T> newNode = new StackNode<>(element, top);
+        top = newNode;
+        size++;
     }
 
     @Override
     public T pop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty())
+            throw new IndexOutOfBoundsException("Stack is empty");
+        T poppedElement = top.getElement();
+        top = top.getNextNode();
+        size--;
+        return poppedElement;
     }
 
     @Override
     public T top() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty())
+            throw new IndexOutOfBoundsException("Stack is empty");
+        return top.getElement();
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        top = null;
+        size = 0;
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return size == 0;
     }
 
     @Override
     public void print() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StackNode<T> n = top;
+        while(n != null)        
+        {
+            System.out.println(n.getElement());
+            n = n.getNextNode();
+        }
     }
     
 }

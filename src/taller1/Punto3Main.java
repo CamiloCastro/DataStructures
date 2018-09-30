@@ -5,6 +5,10 @@
  */
 package taller1;
 
+import datastructure.stack.MyLinkedStack;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 /**
  *
  * @author jccas
@@ -17,7 +21,7 @@ public class Punto3Main {
         int resolve = resolvePostfixExpression(postfixExpression);
         System.out.println("Resolver Postfix: " + resolve);
         
-        String filePath = "C:/anywhere/somefolder/file.txt";
+        String filePath = "file.txt";
         int numberLine = balancedFile(filePath);
         System.out.println("Line with errors: " + numberLine);
         
@@ -25,13 +29,82 @@ public class Punto3Main {
     
     private static int resolvePostfixExpression(String s)
     {
-        //Your code here
-        return 0;
+        MyLinkedStack<Integer> stack = new MyLinkedStack<>();
+        String[] partsOfPostfixExpression = s.split(" ");
+        for (int i = 0; i < partsOfPostfixExpression.length; i++) {
+            String part = partsOfPostfixExpression[i];
+            switch(part)
+            {
+                case "+":case "-":case "*":case "/":                    
+                    Integer op2 = stack.pop();
+                    Integer op1 = stack.pop();
+                    Integer res;
+                    switch (part) {
+                        case "+":
+                            res = op1 + op2;
+                            break;
+                        case "-":
+                            res = op1 - op2;
+                            break;
+                        case "*":     
+                            res = op1 * op2;
+                            break;
+                        default:
+                            res = op1 / op2;
+                            break;
+                    }
+                    
+                    stack.push(res);                
+                    break;
+                default:
+                    stack.push(Integer.parseInt(part));
+                    break;                    
+            }
+            
+        }
+        return stack.pop();
     }
     
     private static int balancedFile(String path)
     {
-        //Your code here
+        try {
+            String line;            
+            MyLinkedStack<Character> stack = new MyLinkedStack<>();
+            FileReader fileReader = new FileReader(path);            
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            int contLine = 1;
+            while((line = bufferedReader.readLine()) != null) {
+                for (int i = 0; i < line.length(); i++) {
+                    Character charAt = line.charAt(i);
+                    switch(charAt)
+                    {
+                        case '[':case '(':case '{':                            
+                            stack.push(charAt);
+                            break;
+                        case ']':case ')':case '}':
+                            if(stack.isEmpty())
+                                return contLine;
+                            Character a = stack.pop();
+                            if (a.equals('(') && !charAt.equals(')'))
+                                return contLine;
+                            if (a.equals('[') && !charAt.equals(']'))
+                                return contLine;
+                            if (a.equals('{') && !charAt.equals('}'))
+                                return contLine;
+                            break;
+                    }
+                }                
+                contLine ++;
+            }
+            if(!stack.isEmpty())
+                return contLine;
+            
+            bufferedReader.close();         
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        
         return -1;        
     }
     

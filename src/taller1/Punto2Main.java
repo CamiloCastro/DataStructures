@@ -5,6 +5,7 @@
  */
 package taller1;
 
+import datastructure.list.MyArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -16,24 +17,51 @@ public class Punto2Main {
     
     public static void main(String args[])
     {
-        int n = 10;
-        int[] searchArray = generateRandomArray(n, -n, n);
-        int N = generateRandomInt(-n, n);
-        //Start Time
-        int index = linealSearch(searchArray, N);
-        //End Time
+        int n = 500000000;
+//        int[] searchArray = generateRandomArray(n, -n, n);
+//        int N = generateRandomInt(-n, n);
+//        long initTime = System.nanoTime();
+//        int index = linealSearch(searchArray, N);
+//        System.out.println("Elapsed Time Lineal Search: " + (System.nanoTime() - initTime) + " nano seconds");
+//        
+//        int[] bubbleArray = generateRandomArray(n, -n, n);        
+//        initTime = System.nanoTime();
+//        bubbleSort(bubbleArray);
+//        System.out.println("Elapsed Time Buble Sort: " + (System.nanoTime() - initTime) + " nano seconds");
         
-        int[] bubbleArray = generateRandomArray(n, -n, n);        
-        //Start Time
-        bubbleSort(bubbleArray);
-        //End Time
+//        int[] mergeArray = generateRandomArray(n, -n, n);        
+//        long initTime = System.nanoTime();
+//        mergeSort(mergeArray);
+//        System.out.println("Elapsed Time Merge Sort: " + (System.nanoTime() - initTime) + " nano seconds");        
         
-        int[] mergeArray = generateRandomArray(n, -n, n);
-        System.out.println(Arrays.toString(mergeArray));
-        //Start Time
-        mergeSort(mergeArray);
-        //End Time
-        System.out.println(Arrays.toString(mergeArray));
+        
+        long time;
+        int a = 1;
+        boolean help = true;
+        while(help)
+        {
+            for (int i = 1; i < 10; i++) {
+                int n1 = (int)(i*Math.pow(10,a));
+                MyArrayList<Long> list = new MyArrayList<>(6);
+                for (int j = 0; j < 6; j++) {
+                    int[] searchArray = generateRandomArray(n1, -n1, n1);
+                    int N = generateRandomInt(-n, n);
+                    long initTime = System.nanoTime();
+                    linealSearch(searchArray, N);
+                    time = System.nanoTime() - initTime;    
+                    list.add(time);
+                }
+                list.sort();
+                time = (list.get(2) + list.get(3)) / 2;
+                System.out.println(n1 + " " + time);
+                if (time > 60000000000l)
+                {
+                    help = false;
+                    break;
+                }
+            }
+            a++;
+        }
         
     }
     

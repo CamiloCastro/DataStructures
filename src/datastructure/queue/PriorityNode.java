@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructure.stack;
+package datastructure.queue;
 
 /**
  *
  * @author juan.castro
  */
-public class StackNode<T> {
+public class PriorityNode<T> {
     
     T element;
-    StackNode<T> nextNode;
+    PriorityNode<T> nextNode;
+    int priority;
 
-    public StackNode(T element, StackNode<T> nextNode) {
+    public PriorityNode(T element, PriorityNode<T> nextNode, int priority) {
         this.element = element;
         this.nextNode = nextNode;
+        this.priority = priority;
     }
 
     public T getElement() {
@@ -27,14 +29,22 @@ public class StackNode<T> {
         this.element = element;
     }
 
-    public StackNode<T> getNextNode() {
+    public PriorityNode<T> getNextNode() {
         return nextNode;
     }
 
-    public void setNextNode(StackNode<T> nextNode) {
+    public void setNextNode(PriorityNode<T> nextNode) {
         this.nextNode = nextNode;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
     
     
-    
+        
 }
