@@ -26,25 +26,83 @@ public class MyExpressionTree {
     public String inOrder()
     {
         //Your code here
-        return "";
+        return inOrder(root).trim();
+    }
+    
+    private String inOrder(MyBinaryNode<String> node)
+    {
+        if(node == null)
+            return "";
+        
+        return inOrder(node.getLeft()) + node.getElement() + " " + inOrder(node.getRight());
     }
     
     public String preOrder()
     {
         //Your code here
-        return "";
+        return preOrder(root).trim();
+    }
+    
+    private String preOrder(MyBinaryNode<String> node)
+    {
+        if(node == null)
+            return "";
+        
+        return node.getElement() + " " + preOrder(node.getLeft()) + preOrder(node.getRight());
     }
     
     public String posOrder()
     {
         //Your code here
-        return "";
+        return posOrder(root).trim();
+    }
+    
+    private String posOrder(MyBinaryNode<String> node)
+    {
+        if(node == null)
+            return "";
+        
+        return posOrder(node.getLeft()) + posOrder(node.getRight()) + node.getElement() + " ";
     }
     
     public int solve()
     {
-        //Your code here
-        return 0;
+        MyLinkedStack<Integer> stack = new MyLinkedStack<>();
+        String s = this.posOrder();
+        String[] partsOfPostfixExpression = s.split(" ");
+        for (int i = 0; i < partsOfPostfixExpression.length; i++) {
+            String part = partsOfPostfixExpression[i];
+            switch(part)
+            {
+                case "+":case "-":case "*":case "/":                    
+                    Integer op2 = stack.pop();
+                    Integer op1 = stack.pop();
+                    Integer res;
+                    switch (part) {
+                        case "+":
+                            res = op1 + op2;
+                            break;
+                        case "-":
+                            res = op1 - op2;
+                            break;
+                        case "*":     
+                            res = op1 * op2;
+                            break;
+                        default:
+                            res = op1 / op2;
+                            break;
+                    }
+                    
+                    stack.push(res);                
+                    break;
+                default:
+                    stack.push(Integer.parseInt(part));
+                    break;                    
+            }
+            
+        }
+        return stack.pop();
+        
     }
 
     public MyBinaryNode<String> getRoot() {

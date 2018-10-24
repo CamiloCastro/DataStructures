@@ -50,36 +50,40 @@ public class MainClass {
         
         //Grading second exercise
         boolean second = true;
-        Temperature t1= new Temperature("30C");
-        Temperature t2= new Temperature("75F");
-        Temperature t3= new Temperature("315K");
-        second = second && (Math.abs(t1.getValue("C") - 30.0) < 0.0001);
-        second = second && (Math.abs(t2.getValue("F") - 75.0) < 0.0001);
-        second = second && (Math.abs(t3.getValue("K") - 315.0) < 0.0001);
+        Temperature t1= new Temperature(30.0, 'C');
+        Temperature t2= new Temperature(75.0,'F');
+        Temperature t3= new Temperature(315.0, 'K');
+        second = second && (Math.abs(t1.getValueInScale('C') - 30.0) < 0.0001);
+        second = second && (Math.abs(t2.getValueInScale('F') - 75.0) < 0.0001);
+        second = second && (Math.abs(t3.getValueInScale('K') - 315.0) < 0.0001);
         if(second)
             total+=0.3;      
         second = true;
         
-        Temperature t4= new Temperature("85C");
-        Temperature t5 = new Temperature("358.15K");
-        second = second && (Math.abs(t1.getValue("F") - 86.0) < 0.0001);
-        second = second && (Math.abs(t1.getValue("K") - 303.15) < 0.0001);
-        second = second && (Math.abs(t2.getValue("K") - 297.0388) < 0.0001);
-        second = second && (Math.abs(t2.getValue("C") - 23.8888) < 0.0001);
-        second = second && (Math.abs(t3.getValue("F") - 107.33) < 0.0001);
-        second = second && (Math.abs(t3.getValue("C") - 41.85) < 0.0001);
+        second = second && (t3.getValue() == 315.0);
+        t3.setValue(200.0);
+        second = second && (t3.getValue() == 200.0);
+        if(second)
+            total+=0.1;      
+        second = true;
+        t3.setValue(315.0);
+        
+        Temperature t4= new Temperature(85.0, 'C');
+        Temperature t5 = new Temperature(358.15,'K');
+        second = second && (Math.abs(t1.getValueInScale('F') - 86.0) < 0.0001);
+        second = second && (Math.abs(t1.getValueInScale('K') - 303.15) < 0.0001);
+        second = second && (Math.abs(t2.getValueInScale('K') - 297.0388) < 0.0001);
+        second = second && (Math.abs(t2.getValueInScale('C') - 23.8888) < 0.0001);
+        second = second && (Math.abs(t3.getValueInScale('F') - 107.33) < 0.0001);
+        second = second && (Math.abs(t3.getValueInScale('C') - 41.85) < 0.0001);
         if(second)
             total+=0.3;
         second = true;
         second = second && (t4.compareTo(t2) == 1);
         second = second && (t1.compareTo(t4) == -1);
-        second = second && (t4.compareTo(t5) == 0);        
-        Temperature res1 = t1.add(t4);
-        Temperature res2 = t3.add(t4);
-        second = second && (Math.abs(res1.getValue("K") - 661.3) < 0.0001);
-        second = second && (Math.abs(res2.getValue("K") - 673.15) < 0.0001);
+        second = second && (t4.compareTo(t5) == 0);                
         if(second)
-            total +=0.4;
+            total +=0.3;
         
         //Grading third exercise
         boolean third = true;
@@ -124,21 +128,21 @@ public class MainClass {
         MyDoubleLinkedList<Temperature> temperatures = new MyDoubleLinkedList<>();
         temperatures.add(t1);temperatures.add(t2);temperatures.add(t3);temperatures.add(t4);temperatures.add(t5);        
         MyDoubleLinkedList<Temperature> temperatures1 = new MyDoubleLinkedList<>();
-        temperatures1.add(new Temperature("28C"));temperatures1.add(new Temperature("3C"));
-        temperatures1.add(new Temperature("120C"));temperatures1.add(new Temperature("37.4F"));temperatures1.add(new Temperature("276.15K"));
+        temperatures1.add(new Temperature(28.0,'C'));temperatures1.add(new Temperature(3.0,'C'));
+        temperatures1.add(new Temperature(120.0, 'C'));temperatures1.add(new Temperature(37.4,'F'));temperatures1.add(new Temperature(276.15, 'K'));
         Temperature average = p3.average(temperatures);        
-        third = third && (Math.abs(average.getValue("C") - 53.1477) < 0.0001);
+        third = third && (Math.abs(average.getValueInScale('C') - 53.1477) < 0.0001);
         average = p3.average(temperatures1);
-        third = third && (Math.abs(average.getValue("C") - 31.4) < 0.0001);
+        third = third && (Math.abs(average.getValueInScale('C') - 31.4) < 0.0001);
         if(third)
             total += 0.3;
         third = true;
         
                 
         Temperature median = p3.median(temperatures);
-        third = third && (Math.abs(median.getValue("C") - 41.85) < 0.0001);
+        third = third && (Math.abs(median.getValueInScale('C') - 41.85) < 0.0001);
         median = p3.median(temperatures1);
-        third = third && (Math.abs(median.getValue("C") - 3.0) < 0.0001);
+        third = third && (Math.abs(median.getValueInScale('C') - 3.0) < 0.0001);
         if(third)
             total+=0.3;
         
@@ -238,7 +242,7 @@ public class MainClass {
         MyBinaryNode<String> op3 = new MyBinaryNode<>("+", op2, k4);
         MyBinaryNode<String> op4 = new MyBinaryNode<>("-", k6, k7);
         MyBinaryNode<String> op5 = new MyBinaryNode<>("*", k5, op4);
-        MyBinaryNode<String> op6 = new MyBinaryNode<>("-", op3, op5);        
+        MyBinaryNode<String> op6 = new MyBinaryNode<>("+", op3, op5);        
         
         MyExpressionTree met1 = new MyExpressionTree(op6);
         

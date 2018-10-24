@@ -21,7 +21,9 @@ public class MyLinkedStack<T> {
     }    
     
     public void push(T element) {
-        //Your code here
+        StackNode<T> newNode = new StackNode<>(element, top);
+        top = newNode;
+        size++;
     }
 
     
