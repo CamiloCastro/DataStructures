@@ -13,8 +13,6 @@ public class BinaryHeapExample {
     
     public static void main(String[] args) {
         
-        System.out.println(-7%5);
-        
         Person p1 = new Person(5, "Persona1");
         Person p2 = new Person(7, "Persona2");
         Person p3 = new Person(2, "Persona3");
@@ -38,6 +36,14 @@ public class BinaryHeapExample {
         
         System.out.println(bh.deleteMin().toString());
         System.out.println(bh.deleteMin().toString());
+        
+        Person[] persons = {p1,p2,p3,p4,p5,p6,p7,p8,p9};
+        
+        BinaryHeap<Person> bh1 = new BinaryHeap<>();
+        bh1.buildHeap(persons);
+        
+        System.out.println(bh1.deleteMin().toString());
+        System.out.println(bh1.deleteMin().toString());
         
         
         

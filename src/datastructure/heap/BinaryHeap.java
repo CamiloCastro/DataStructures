@@ -72,8 +72,15 @@ public class BinaryHeap<T extends Comparable> {
         }
         array[position] = tmp;
     }
-            
-            
-           
+    
+    //Implementar metodo buildHeap utilizando el algoritmo visto en clase
+    
+    public void buildHeap(T[] items)
+    {
+        for(int i=0; i<items.length; i++)        
+        {
+            insert(items[i]);
+        }
+    }      
     
 }
