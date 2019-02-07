@@ -96,4 +96,54 @@ public class MyDoubleLinkedList<T extends Comparable> extends AbstractList<T> {
         initialize();
     }
     
+    public void remove(T x) {
+        int n = size /2;
+        if(size % 2 == 1)
+            n++;
+        
+        Node<T> fromFront = root.getNext();
+        Node<T> fromTail = tail.getBefore();
+        
+        for(int i=0;i<n;i++)
+        {
+            if(fromFront.getElement().equals(x) || fromTail.getElement().equals(x))
+            {
+                Node<T> removeNode;
+                if(fromFront.getElement().equals(x))
+                    removeNode = fromFront;
+                else
+                    removeNode = fromTail;                    
+                
+                removeNode.getBefore().setNext(removeNode.getNext());
+                removeNode.getNext().setBefore(removeNode.getBefore());
+                size--;
+                return;
+            }   
+            
+            fromFront = fromFront.getNext();
+            fromTail = fromTail.getBefore();            
+        }
+                   
+    }
+    
+    public boolean contains(T x)
+    {
+        int n = size /2;
+        if(size % 2 == 1)
+            n++;
+        
+        Node<T> fromFront = root.getNext();
+        Node<T> fromTail = tail.getBefore();
+        
+        for(int i=0;i<n;i++)
+        {
+            if(fromFront.getElement().equals(x) || fromTail.getElement().equals(x))
+                return true;
+            
+            fromFront = fromFront.getNext();
+            fromTail = fromTail.getBefore();            
+        }
+        return false;        
+    }
+    
 }
