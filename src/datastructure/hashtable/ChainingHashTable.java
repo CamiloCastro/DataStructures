@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hashtable;
+package datastructure.hashtable;
 
 import datastructure.list.MyDoubleLinkedList;
 
@@ -24,6 +24,8 @@ public class ChainingHashTable<T extends Comparable> {
         this.size = 0;
         n = nextPrime(n);
         this.lists = new MyDoubleLinkedList[n];
+        for(int i=0; i<lists.length; i++)
+            lists[i] = new MyDoubleLinkedList<>();
     }
     
     private boolean isPrime(int x)
@@ -69,9 +71,25 @@ public class ChainingHashTable<T extends Comparable> {
             aList.add(x);
             size++;
             
-//            if(size > lists.length)
-//                rehash();
+            if(size > lists.length)
+                rehash();
         }
+    }
+    
+    public void rehash()
+    {
+        MyDoubleLinkedList<T>[] oldLists = lists;
+        
+        lists = new MyDoubleLinkedList [nextPrime(2*lists.length)];
+        for(int i=0;i<lists.length;i++)
+            lists[i] = new MyDoubleLinkedList<>();
+        
+        size = 0;
+        for(int i=0;i<oldLists.length;i++)        
+            for(int j=0;j<oldLists[i].size();j++)
+                insert(oldLists[i].get(j));
+                
+        
     }
     
     public void remove(T x)
