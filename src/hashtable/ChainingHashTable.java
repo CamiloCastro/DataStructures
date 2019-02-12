@@ -68,6 +68,9 @@ public class ChainingHashTable<T extends Comparable> {
         {
             aList.add(x);
             size++;
+            
+//            if(size > lists.length)
+//                rehash();
         }
     }
     

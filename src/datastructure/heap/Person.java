@@ -5,6 +5,8 @@
  */
 package datastructure.heap;
 
+import java.util.Objects;
+
 /**
  *
  * @author jccas
@@ -48,6 +50,29 @@ public class Person implements Comparable<Person> {
     public String toString() {
         return "Person{" + "age=" + age + ", name=" + name + '}';
     }
+
+    
+    public int hashCode() {
+        return name.hashCode();        
+    }
+
+    
+    public boolean equals(Person obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }       
+        
+        if (obj.getName().equals(this.getName())) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
     
     
     
