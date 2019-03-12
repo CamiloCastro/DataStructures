@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructure.list;
+package taller2.punto5;
 
 /**
  *

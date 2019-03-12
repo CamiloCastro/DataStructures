@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package taller2.punto5;
+package parcial2;
 
 import java.util.Objects;
 
@@ -18,6 +18,7 @@ public class Vertex<T extends Comparable> implements Comparable<Vertex> {
     boolean known;
     int dist;
     Vertex path;
+    int code;
     
     public Vertex(String name)
     {
@@ -97,6 +98,14 @@ public class Vertex<T extends Comparable> implements Comparable<Vertex> {
             return false;
         }
         return true;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
     
     

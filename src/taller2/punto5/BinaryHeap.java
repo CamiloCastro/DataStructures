@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package taller2.punto2;
+package taller2.punto5;
 
 import java.util.Arrays;
 
@@ -11,20 +11,17 @@ import java.util.Arrays;
  *
  * @author jccas
  */
-public class DHeap<T extends Comparable> {
+public class BinaryHeap<T extends Comparable> {
     
     private int size;
-    protected T[] array;
-    private int d;
+    private T[] array;
     
-    public DHeap(int d) {
-        this.d = d;
+    public BinaryHeap() {
         this.size = 0;
         array = (T[]) new Comparable[10];
     }
     
-    public DHeap(int initialSize, int d) {
-        this.d = d;
+    public BinaryHeap(int initialSize) {
         this.size = 0;
         array = (T[]) new Comparable[initialSize];
     }
@@ -44,9 +41,9 @@ public class DHeap<T extends Comparable> {
             ensureCapacity(array.length * 2);
         
         int newPosition = ++size;        
-        for(array[0] = item;item.compareTo(array[(newPosition + d - 2)/d]) < 0; newPosition = (newPosition + d - 2)/d )
+        for(array[0] = item;item.compareTo(array[newPosition/2]) < 0; newPosition /= 2)
         {
-            array[newPosition] = array[(newPosition + d - 2)/d];
+            array[newPosition] = array[newPosition/2];
         }
         array[newPosition] = item;
     }
@@ -61,23 +58,13 @@ public class DHeap<T extends Comparable> {
     
     private void percolateDown(int position) 
     {
-        int child;
+        int child = 0;
         T tmp = array[position];
-        for( ;(d*position) - (d-2) <= size; position = child)
+        for(;position * 2 <= size; position = child)
         {
-            child = (d*position) - (d-2);
-            T min = array[child];
-            int cont = 0;
-            for(int i = child + 1;i <= size && cont < d - 1;i++)
-            {
-                if(array[i].compareTo(min) < 0)
-                {
-                    min = array[i];
-                    child = i;
-                }
-                cont++;
-            }
-            
+            child = position * 2;
+            if(child != size && array[child + 1].compareTo(array[child]) < 0)
+                child++;
             if(array[child].compareTo(tmp) < 0)
                 array[position] = array[child];
             else
@@ -86,19 +73,14 @@ public class DHeap<T extends Comparable> {
         array[position] = tmp;
     }
     
+    //Implementar metodo buildHeap utilizando el algoritmo visto en clase
+    
     public void buildHeap(T[] items)
     {
-        size = items.length; 
-        array = (T[]) new Comparable[size + 1];
-        for(int i = 0;i < items.length;i++)
+        for(int i=0; i<items.length; i++)        
         {
-            array[i+1] = items[i];
-        }                      
-        
-        for(int i = (size + d - 2)/d ; i >= 1 ; i-- )
-        {
-            percolateDown(i);
+            insert(items[i]);
         }
-    }
+    }      
     
 }
